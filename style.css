@@ -1,0 +1,126 @@
+@import "compass/css3";
+
+@import url(https://fonts.googleapis.com/css?family=Merriweather);
+
+*, 
+*:before, 
+*:after {
+   @include box-sizing(border-box); 
+}
+
+html, body {
+  background: #f1f1f1;
+  font-family: 'Merriweather', sans-serif;
+  padding: 1em;
+}
+
+h1 {
+   text-align: center;
+   margin: 0 50px 30px 0;
+   @include text-shadow(1px 1px 0 rgba(black, 1));
+}
+
+form {
+   max-width: 600px;
+   text-align: center;
+   margin: 20px auto;
+   padding: 10px 20px;
+   background: #E5E5E5;
+   border-radius: 8px;
+
+  
+  input, textarea {
+     border:0; outline:0;
+     padding: 1em;
+     @include border-radius(8px);
+     display: block;
+     width: 100%;
+     margin-top: 0em;
+     margin-bottom: 1em;
+     font-family: 'Merriweather', sans-serif;
+     @include box-shadow(0 1px 1px rgba(black, 0.1));
+     resize: none;
+    
+    &:focus {
+       @include box-shadow(0 0px 2px rgba($red, 1)!important);
+    }
+  }
+  
+  textarea {
+      height: 126px;
+  }
+}
+label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 2px;
+  text-align: left;
+  font-family: 'Merriweather', sans-serif;
+}
+select {
+  padding: 6px;
+  height: auto;
+  border-radius: 15px;
+  background: #f1f1f1;
+  width: 100%;
+  font-family: 'Merriweather', sans-serif;
+}
+select {
+  border: none;
+  font-size: 14px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  width: 100%;
+  background-color: #D3D3D3;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.13) inset;
+  margin-bottom: 15px;
+}
+.half {
+  float: left;
+  width: 48%;
+  margin-bottom: 1em;
+}
+button{
+     color: white; 
+     font-size: 20px;
+     border:0; outline:0;
+     background: #59C041;
+     cursor: pointer;
+     text-align: right;
+     border-radius: 8px;
+     font-family: 'Merriweather', sans-serif;
+     transition: 0.3s;
+
+    &:hover {
+       background: #4BA038;
+       @include box-shadow(0 1px 1px 1px rgba(#aaa, 0.6)); 
+   }
+}
+
+.right { width: 50%; }
+
+.left {
+     margin-right: 2%; 
+}
+
+
+@media (max-width: 480px) {
+  .half {
+     width: 100%; 
+     float: none;
+     margin-bottom: 0; 
+  }
+}
+
+
+
+.cf:before,
+.cf:after {
+    content: " "; 
+    display: table; 
+}
+
+.cf:after {
+    clear: both;
+}

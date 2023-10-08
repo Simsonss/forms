@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<form class="cf" >
+    <link href="style.css" rel="stylesheet">
+    <h1>Report a problem</h1>
+    <div><div class="half left cf">
+      <label for="name">Name:</label>
+      <input name="name"type="text" id="input-name" placeholder="Name">
+      <label for="name">issue Type:</label>
+      <select id="issue-type" name="issueTypes">
+                <option value="Task">Task</option>
+                <option value="Story">Story</option>
+                <option value="Bug">Bug</option>
+                <option value="Epic">Epic</option>
+                <option value="New Project">New Project</option>
+       </select>
+      <label for="name">Subject:</label>
+      <input name="subject" type="text" id="input-subject"          
+  placeholder="Subject">
+    </div>
+    <div class="half right cf">
+      <label for="name">Description:</label>
+      <textarea name="description" type="text" id="input-message"
+  placeholder="Description"></textarea>
+    </div>
+      </div>
+    <button type="submit"  id="input-submit">Submit</button>
+    <link href="style.css" rel="stylesheet">
+  </form>
+
+  <script>
+    const formEl = document.querySelector('.cf');
+
+    formEl.addEventListener('submit',event =>{
+        event.preventDefault();
+        const formData = new FormData(formEl);
+        const datas = JSON.stringify(Object.fromEntries(formData));
+        console.log(datas.description);
+        fetch('https://reqres.in/api/users',{
+            method: 'Post',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: datas
+        }).then(res => res.json())
+          .then(data => console.log(datas))
+          .catch(error => console.log(error));
+ 
+
+    });
+  
+
+  </script>
