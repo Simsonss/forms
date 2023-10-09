@@ -33,16 +33,59 @@
     formEl.addEventListener('submit',event =>{
         event.preventDefault();
         const formData = new FormData(formEl);
-        const datas = JSON.stringify(Object.fromEntries(formData));
-        console.log(datas.description);
-        fetch('https://reqres.in/api/users',{
-            method: 'Post',
+        const str = JSON.stringify(Object.fromEntries(formData));
+        const jsons = JSON.parse(str);
+        const test = `{"name": "${jsons.name}","issueTypes": "${jsons.issueTypes}","subject": "${jsons.subject}","description": "${jsons.description}"}`
+        const datas = `{
+        "fields": {
+        "project": {"id": "10010"},
+        "summary": "${jsons.subject}",
+        "issuetype": {"name": "${jsons.issueTypes}"},
+        "description": {
+                "version": 1,
+                "type": "doc",
+                "content": [
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "${jsons.description}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }`;
+    // console.log(jsons);
+    // fetch('https://gotdevops.atlassian.net/rest/api/3/issue', {
+    //     method: 'POST',
+    //     headers: {
+    //     //   'Authorization': `Basic ${env.JIRATOKEN}`,
+    //     'Authorization': `Basic c2F3cmF3aXQuc0BnbWFpbC5jb206QVRBVFQzeEZmR0YwaFRtVnc1WWxNR0RYcm5rYUNZZHlYQXprcHlYSk52d29CaXlMbjdhenNQcEhXRG40eU5lMWpwQ1M2V1RYOEt0RWMyd2s0b1Z6UXpZVjNCakdqU3oyb3dYUVl0R2pRdW1CaHEzZm5HTDdfNFdrNmdDYS1hTFVJTmJST0hpWlBnNkRYQjZ6V2I3WFFnVzVkTmVnT0NOd0NtV0hNS3JvQTFUM2ZwX1k0a2x5S09zPUJGOEY3MTJF`,
+    //       'Accept': 'application/json',
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: datas
+    //   })
+    //     .then(response => {
+    //       console.log(
+    //         `Response: ${response.status} ${response.statusText}`
+    //       );
+    //       return response.json();
+    //     })
+    //     .then(text => console.log(text))
+    //     .catch(err => console.error(err));
+
+        fetch('http://localhost:4008/jira',{
+            method: 'POST',
             headers:{
-                'Content-Type': 'application/json'
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
             },
-            body: datas
+            body: test
         }).then(res => res.json())
-          .then(data => console.log(datas))
           .catch(error => console.log(error));
  
 
