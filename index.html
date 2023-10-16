@@ -36,7 +36,7 @@
         const jsons = JSON.parse(str);
         const datas = `{"name": "${jsons.name}","issueTypes": "${jsons.issueTypes}","subject": "${jsons.subject}","description": "${jsons.description}"}`
 
-        fetch('http://localhost:4008/jira',{
+        fetch('http://localhost:8080/jira',{
             method: 'POST',
             headers:{
               'Accept': 'application/json',
